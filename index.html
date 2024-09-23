@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook-P2-M05.5</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            if (selectedTime === '45') {
+                document.getElementById('activity-2').style.display = 'none';
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-2').style.display = 'none';
+                document.getElementById('activity-4-step-9').style.display = 'none';
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook-P2-M05.5</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+
+<!-- Actividad 0 (1 paso) -->
+<div id="activity-0" class="activity">
+    <div class="banner" onclick="toggleContent('revision-mision')">
+        <div class="title">
+            <span>📝 Actividad 0: Revisión de Misión (1 paso)</span>
+            <span>⏰ Tiempo: N/A</span>
+        </div>
+        <div class="subtitle">Verificar que los materiales y equipos estén preparados</div>
+        <div class="summary">Proyectar la diapositiva 1 "Materiales para la Misión". Verificar que los materiales y equipos estén listos.</div>
+    </div>
+    <div id="revision-mision" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1: Verificación de Materiales</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">Verificar que los materiales y equipos necesarios estén preparados para la actividad.</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 1 (4 pasos) -->
+<div id="activity-1" class="activity">
+    <div class="banner" onclick="toggleContent('saludo-ritual')">
+        <div class="title">
+            <span>👋 Actividad 1: Saludo y Ritual Gnius Club (4 pasos)</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Saludo y presentación de la misión</div>
+        <div class="summary">Dar la bienvenida a los estudiantes con energía y explicar los objetivos del día.</div>
+    </div>
+    <div id="saludo-ritual" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Bienvenida</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"¡Hola, Genios! 🌟 Hoy tenemos una misión muy especial: vamos a grabar nuestras propias animaciones. ¡Espero que estén listos para este gran reto!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Estado de Ánimo</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"¿Cómo están hoy? Levanten las manos si están emocionados por animar, crucen los brazos si están un poco nerviosos."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (0.5 minutos): Ritual de Agradecimiento</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Juntémonos en agradecimiento por lo que vamos a aprender hoy. ¡Gracias por asistir y por su entusiasmo, Genios!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Objetivos de la Misión</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Hoy, nuestro objetivo es grabar una animación donde dos personajes interactúen con un robot, y además, mejorarán los diálogos en equipo. ¡Vamos a por ello!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 2 (4 pasos) -->
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('state-change')">
+        <div class="title">
+            <span>🧘 Actividad 2: State Change (4 pasos)</span>
+            <span>⏰ Tiempo: 5 minutos</span>
+        </div>
+        <div class="subtitle">Ejercicio creativo de diálogos</div>
+        <div class="summary">Ejercicio grupal para generar ideas rápidas y mejorar la fluidez en los diálogos.</div>
+    </div>
+    <div id="state-change" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Presentación de Personajes</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"¡Genios! Vamos a trabajar juntos. Les voy a mostrar un personaje en la pantalla y quiero que todos me digan qué creen que este personaje podría decir. Piensen en frases creativas que puedan salir de su boca."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (2 minutos): Lluvia de Ideas</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Vamos, Genios, ¿qué podría estar diciendo este robot mientras mira este paisaje? Denme sus mejores ideas, no hay respuestas incorrectas. ¡Liberen su creatividad!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (2 minutos): Nuevo Personaje</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Ahora vamos a cambiar de personaje. Miren esta nueva imagen. ¿Qué creen que este personaje estaría diciendo? ¡Sigan proponiendo ideas creativas!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (0.5 minutos): Conclusión del Ejercicio</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Este ejercicio nos ha ayudado a ver cómo podemos generar muchas ideas para los diálogos de nuestros personajes. ¡Ahora están listos para crear diálogos impresionantes para sus animaciones!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 3 (5 pasos) -->
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('challenge')">
+        <div class="title">
+            <span>🏆 Actividad 3: Challenge (5 pasos)</span>
+            <span>⏰ Tiempo: 18 minutos</span>
+        </div>
+        <div class="subtitle">Crear una conversación entre dos amigos y un robot de otra dimensión</div>
+        <div class="summary">Los estudiantes crearán diálogos entre dos amigos y un robot que visita su planeta.</div>
+    </div>
+    <div id="challenge" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Introducción al reto</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"¡Genios! Hoy tendrán un reto emocionante: imaginen que unos robots de otra dimensión visitan nuestro planeta. Van a crear una conversación entre un robot y dos amigos que viven aquí. Piensen en qué preguntas le harían al robot y qué respuestas les daría."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (0.5 minutos): Recoger materiales</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Antes de comenzar, vayan a recoger sus Magic Tablets. Las usarán para escribir las preguntas y respuestas de su diálogo. ¡Tienen 30 segundos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (5 minutos): Escribir los diálogos</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Tienen 5 minutos para escribir las preguntas que los dos amigos le harían al robot, y cómo el robot les respondería. ¿Qué curiosidades podrían tener los humanos sobre su dimensión? ¿Cómo respondería el robot?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (10 minutos): Grabación de la animación</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Es momento de grabar. Asegúrense de que los tres personajes interactúen: los dos amigos haciendo preguntas al robot y el robot respondiendo sobre su dimensión. ¡Diviértanse creando esta conversación!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (2 minutos): Revisión de los objetivos</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"¡Increíbles trabajos, Genios! Han completado la misión. Revisemos si lograron que el robot respondiera las preguntas de los amigos sobre su dimensión. ¡Excelentes conversaciones!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 4 (10 pasos) -->
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('team-gnius')">
+        <div class="title">
+            <span>🤝 Actividad 4: Team Gnius (10 pasos)</span>
+            <span>⏰ Tiempo: 23.5 minutos</span>
+        </div>
+        <div class="subtitle">Formación de equipos para trabajar juntos en un proyecto</div>
+        <div class="summary">Los estudiantes se organizan en equipos de tres para colaborar en la mejora de un proyecto.</div>
+    </div>
+    <div id="team-gnius" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Formación de equipos</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"¡Genios! Ahora vamos a trabajar en equipos de tres. Tienen 30 segundos para encontrar a dos compañeros y formar su equipo. ¡Adelante!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (6 minutos): Exponer proyectos</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Cada uno de ustedes compartirá el proyecto que hizo en el Challenge. Tienen 6 minutos para escuchar las ideas de sus compañeros."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (6 minutos): Comentar proyectos</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Ahora, comenten entre ustedes qué parte les gustó más de cada proyecto y qué piensan que se podría mejorar. ¡Tienen 6 minutos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (0.5 minutos): Elegir proyecto</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"De los tres proyectos que compartieron, elijan uno para trabajar en equipo. Piensen cuál creen que tiene más potencial para mejorar."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (2 minutos): Mejorar diálogos</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Ahora que tienen el proyecto elegido, propongan en equipo ideas para mejorar los diálogos. ¿Qué preguntas nuevas pueden incluir? ¿Qué respuestas podría dar el robot? ¡Tienen 2 minutos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 6 (1 minuto): Asignar roles</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Definan quién será el robot y quiénes serán los dos amigos habitantes del planeta. Cada uno tomará el rol de un personaje."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 7 (2 minutos): Anotar diálogos</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Tienen 2 minutos para escribir las nuevas ideas y diálogos mejorados en sus Magic Tablets. ¡Es importante que todo quede claro para la presentación!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 8 (5 minutos): Preparación de la presentación</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Ahora preparen su presentación final. Cada uno será su personaje, practiquen los diálogos y prepárense para exponer su historia frente a la clase."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 9 (5 minutos): Exponer la historia (Omitido en clase de 40 minutos)</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Es momento de que algunos equipos compartan su historia final mejorada. Presenten la conversación entre los tres personajes de forma creativa."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 10 (0.5 minutos): Revisión de logros</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"¡Gran trabajo, Genios! Han aprendido a escuchar, exponer sus ideas, y colaborar en equipo para mejorar una historia. Revisemos lo que logramos hoy: compartir ideas, mejorar diálogos y trabajar juntos. ¡Sigan así!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 5 (3 pasos) -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('honor-dojo')">
+        <div class="title">
+            <span>🏅 Actividad 5: Honor de Dojo (3 pasos)</span>
+            <span>⏰ Tiempo: 2.5 minutos</span>
+        </div>
+        <div class="subtitle">Reflexionar sobre lo aprendido y recoger el espacio de trabajo</div>
+        <div class="summary">Los estudiantes comparten lo que más les gustó de la clase y ordenan el salón.</div>
+    </div>
+    <div id="honor-dojo" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Reflexión y feedback</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"¡Genios, han hecho un excelente trabajo hoy! Antes de terminar, me gustaría escuchar qué parte de la clase les gustó más. ¿Qué fue lo que más les divirtió o lo que más aprendieron?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (0.5 minutos): Felicitaciones por esfuerzo y creatividad</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Hoy hemos aprendido a crear diálogos y animaciones increíbles. Quiero reconocer a todos por su esfuerzo, creatividad y trabajo en equipo. ¡Bien hecho, Genios!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Honrar el espacio</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">"Antes de terminar, vamos a honrar nuestro espacio de trabajo. Por favor, recojan sus materiales y asegúrense de dejar todo en orden para la próxima misión."</div>
+        </div>
+    </div>
+</div>
+</div> <!-- Cierre del container -->
+
+    <!-- Scripts adicionales si es necesario -->
+    <script>
+        // Agregar scripts adicionales aquí si es necesario
+    </script>
+
+    </body>
+    </html>
